@@ -7,28 +7,37 @@ export LINKDOT=$PWD
 # App launcher, screenshot tool, pdf viewer, image viewer, and text editor.
 sudo pacman -S ttf-joypixels ttf-croscore noto-fonts-cjk noto-fonts \
     ttf-fantasque-sans-mono ttf-linux-libertine rofi mpv maim \
-    alacritty alacritty-terminfo compton neofetch dash neovim \
-    feh sxhkd bspwm i3-gaps dunst zathura-pdf-mupdf libnotify \
-    diff-so-fancy zsh-autosuggestions zsh-syntax-highlighting \
-    xorg-server xorg-xinit xorg-xprop pulseaudio-alsa exa xclip
+    alacritty compton neofetch dash neovim feh sxhkd bspwm \
+    i3-gaps dunst zathura-pdf-mupdf libnotify diff-so-fancy \
+    zsh-autosuggestions zsh-syntax-highlighting xorg-server \
+    xorg-xinit xorg-xprop pulseaudio-alsa exa xclip
 
-read -p "-- For music, use mpd + ncmpcpp instead of cmus? [y/N] " yna
-case $yna in
-    [Yy]* ) sudo pacman -S mpd ncmpcpp
-        patch home/.xinitrc < other/add-mpd.patch
-        ;;
-    * ) sudo pacman -S cmus;;
-esac
+# Install music player. mpd + ncmpcpp
+sudo pacman -S mpd ncmpcpp
+patch home/.xinitrc < other/add-mpd.patch
+
+# read -p "-- For music, use mpd + ncmpcpp instead of cmus? [y/N] " yna
+# case $yna in
+#     [Yy]* ) sudo pacman -S mpd ncmpcpp
+#         patch home/.xinitrc < other/add-mpd.patch
+#         ;;
+#     * ) sudo pacman -S cmus;;
+# esac
+
+# Install some more programs. Including a file manager,
+# find, cat, grep, and curl replacements. And a powerful image viewer.
+sudo pacman -S nnn fd bat ripgrep httpie sxiv fzf
+patch home/.zshrc < other/add-fzf.patch
 
 # Optionally install some more programs. Including a file manager,
 # find, cat, grep, and curl replacements. And a powerful image viewer.
-read -p "-- Install extras? (nnn fd bat ripgrep httpie sxiv fzf) [Y/n] " ynb
-case $ynb in
-    ''|[Yy]* ) sudo pacman -S nnn fd bat ripgrep httpie sxiv fzf
-        patch home/.zshrc < other/add-fzf.patch
-        ;;
-    * ) echo "-- Extras Skipped";;
-esac
+# read -p "-- Install extras? (nnn fd bat ripgrep httpie sxiv fzf) [Y/n] " ynb
+# case $ynb in
+#     ''|[Yy]* ) sudo pacman -S nnn fd bat ripgrep httpie sxiv fzf
+#         patch home/.zshrc < other/add-fzf.patch
+#         ;;
+#     * ) echo "-- Extras Skipped";;
+# esac
 
 # Link dash to /bin/sh for performance boost.
 # Then link several font config files for better font display.
@@ -52,14 +61,20 @@ mkdir -p ~/.config ~/.aurpkgs ~/Images/Captures ~/Images/Wallpapers \
 mv -n wallpapers/* ~/Images/Wallpapers
 
 # Clone the aur packages being installed. Polybar and Oh-My-Zsh
-git clone https://aur.archlinux.org/oh-my-zsh-git.git ~/.aurpkgs/oh-my-zsh-git
-git clone https://aur.archlinux.org/polybar.git ~/.aurpkgs/polybar
+git clone https://aur.archlinux.org/yay.git ~/.aurpkgs/yay
+# git clone https://aur.archlinux.org/oh-my-zsh-git.git ~/.aurpkgs/oh-my-zsh-git
+# git clone https://aur.archlinux.org/polybar.git ~/.aurpkgs/polybar
 
 # Install them
-cd ~/.aurpkgs/oh-my-zsh-git
+cd ~/.aurpkgs/yay
 makepkg -si
-cd ~/.aurpkgs/polybar
-makepkg -si
+#cd ~/.aurpkgs/oh-my-zsh-git
+#makepkg -si
+#cd ~/.aurpkgs/polybar
+#makepkg -si
+
+# Install Polybar and Oh-My-Zsh using yay
+yay -S oh-my-zsh-git polybar
 
 # Link all dotfiles into their appropriate locations
 cd ~
