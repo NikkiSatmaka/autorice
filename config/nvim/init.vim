@@ -201,7 +201,7 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 " Set airline theme
-let g:airline_theme = 'base16-tomorrow-night'
+let g:airline_theme = 'base16_tomorrow'
 
 try
     set termguicolors
