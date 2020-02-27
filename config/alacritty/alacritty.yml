@@ -335,7 +335,7 @@ live_config_reload: true
 #   - (macOS) /bin/bash --login
 #   - (Linux/BSD) user login shell
 #   - (Windows) powershell
-#shell:
+shell:
   program: /bin/zsh
 #  args:
 #    - --login
@@ -383,7 +383,7 @@ debug:
   # Record all characters and escape sequences as test data.
   ref_test: false
 
-#mouse:
+mouse:
   # Click settings
   #
   # The `double_click` and `triple_click` settings control the time
@@ -546,7 +546,7 @@ mouse_bindings:
 #
 # If the same trigger is assigned to multiple actions, all of them are executed
 # at once.
-#key_bindings:
+key_bindings:
   # (Windows, Linux, and BSD only)
   - { key: V,        mods: Control|Shift, action: Paste            }
   #- { key: C,        mods: Control|Shift, action: Copy             }
