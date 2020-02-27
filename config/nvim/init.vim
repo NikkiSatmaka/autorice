@@ -1,11 +1,11 @@
 
 "
-"  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
-"  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
-"  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
-"  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
-"  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
-"  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
+"  ‚ñà‚ñà‚ñà‚ïó   ‚ñà‚ñà‚ïó‚ñà‚ñà‚ñà‚ñà‚ñà‚ñà‚ñà‚ïó ‚ñà‚ñà‚ñà‚ñà‚ñà‚ñà‚ïó ‚ñà‚ñà‚ïó   ‚ñà‚ñà‚ïó‚ñà‚ñà‚ïó‚ñà‚ñà‚ñà‚ïó   ‚ñà‚ñà‚ñà‚ïó
+"  ‚ñà‚ñà‚ñà‚ñà‚ïó  ‚ñà‚ñà‚ïë‚ñà‚ñà‚ïî‚ïê‚ïê‚ïê‚ïê‚ïù‚ñà‚ñà‚ïî‚ïê‚ïê‚ïê‚ñà‚ñà‚ïó‚ñà‚ñà‚ïë   ‚ñà‚ñà‚ïë‚ñà‚ñà‚ïë‚ñà‚ñà‚ñà‚ñà‚ïó ‚ñà‚ñà‚ñà‚ñà‚ïë
+"  ‚ñà‚ñà‚ïî‚ñà‚ñà‚ïó ‚ñà‚ñà‚ïë‚ñà‚ñà‚ñà‚ñà‚ñà‚ïó  ‚ñà‚ñà‚ïë   ‚ñà‚ñà‚ïë‚ñà‚ñà‚ïë   ‚ñà‚ñà‚ïë‚ñà‚ñà‚ïë‚ñà‚ñà‚ïî‚ñà‚ñà‚ñà‚ñà‚ïî‚ñà‚ñà‚ïë
+"  ‚ñà‚ñà‚ïë‚ïö‚ñà‚ñà‚ïó‚ñà‚ñà‚ïë‚ñà‚ñà‚ïî‚ïê‚ïê‚ïù  ‚ñà‚ñà‚ïë   ‚ñà‚ñà‚ïë‚ïö‚ñà‚ñà‚ïó ‚ñà‚ñà‚ïî‚ïù‚ñà‚ñà‚ïë‚ñà‚ñà‚ïë‚ïö‚ñà‚ñà‚ïî‚ïù‚ñà‚ñà‚ïë
+"  ‚ñà‚ñà‚ïë ‚ïö‚ñà‚ñà‚ñà‚ñà‚ïë‚ñà‚ñà‚ñà‚ñà‚ñà‚ñà‚ñà‚ïó‚ïö‚ñà‚ñà‚ñà‚ñà‚ñà‚ñà‚ïî‚ïù ‚ïö‚ñà‚ñà‚ñà‚ñà‚ïî‚ïù ‚ñà‚ñà‚ïë‚ñà‚ñà‚ïë ‚ïö‚ïê‚ïù ‚ñà‚ñà‚ïë
+"  ‚ïö‚ïê‚ïù  ‚ïö‚ïê‚ïê‚ïê‚ïù‚ïö‚ïê‚ïê‚ïê‚ïê‚ïê‚ïê‚ïù ‚ïö‚ïê‚ïê‚ïê‚ïê‚ïê‚ïù   ‚ïö‚ïê‚ïê‚ïê‚ïù  ‚ïö‚ïê‚ïù‚ïö‚ïê‚ïù     ‚ïö‚ïê‚ïù
 "
 "  https://github.com/neovim/neovim
 "
@@ -14,6 +14,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
 " Sections:
+"    -> VIM plug
 "    -> General
 "    -> VIM user interface
 "    -> Colors and Fonts
@@ -25,6 +26,7 @@
 "    -> Editing mappings
 "    -> vimgrep searching and cope displaying
 "    -> Spell checking
+"    -> Nerd Tree
 "    -> Misc
 "    -> Helper functions
 "
@@ -32,10 +34,59 @@
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => VIM plug
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+call plug#begin('~/.config/nvim/plugged')
+" 
+" Themes
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'chriskempson/base16-vim'
+"Plug 'tomasiser/vim-code-dark'
+" Center text
+"Plug 'junegunn/goyo.vim'
+" Code Completion
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Fuzzy find files
+"Plug 'ctrlpvim/ctrlp.vim'
+" This objectively makes vim better
+"Plug 'terryma/vim-multiple-cursors'
+" Working with tags
+"Plug 'alvan/vim-closetag'
+"Plug 'tpope/vim-surround'
+" Commenting
+"Plug 'tpope/vim-commentary'
+" Syntax highlighting
+"Plug 'yuezk/vim-js'
+"Plug 'maxmellon/vim-jsx-pretty'
+"Plug 'HerringtonDarkholme/yats.vim'
+"Plug 'vim-pandoc/vim-pandoc-syntax'
+"Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+"Plug 'unblevable/quick-scope'
+"Plug 'kovetskiy/sxhkd-vim'
+" File management
+Plug 'preservim/nerdtree'
+"Plug 'PotatoesMaster/i3-vim-syntax'
+"Plug 'jreybert/vimagit'
+"Plug 'lukesmithxyz/vimling'
+Plug 'vimwiki/vimwiki'
+
+call plug#end()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
 set history=500
+
+" Set no compatible
+set nocompatible
+
+" Set mouse
+set mouse=a
+
+" Use system clipboard
+set clipboard+=unnamedplus
 
 " Enable filetype plugins
 filetype plugin on
@@ -68,7 +119,13 @@ source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
 " Turn on the Wild menu
-set wildmenu
+"set wildmenu
+
+" Turn on autocompletion
+set wildmode=longest,list,full
+
+" Fix splitting
+set splitbelow splitright
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
@@ -143,8 +200,12 @@ if $COLORTERM == 'gnome-terminal'
     set t_Co=256
 endif
 
+" Set airline theme
+let g:airline_theme = 'base16-tomorrow-night'
+
 try
-    colorscheme ron 
+    set termguicolors
+    colorscheme base16-tomorrow-night
 catch
 endtry
 
@@ -305,6 +366,17 @@ map <leader>sn ]s
 map <leader>sp [s
 map <leader>sa zg
 map <leader>s? z=
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Nerd Tree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:NERDTreeWinPos = "left"
+let NERDTreeShowHidden=0
+let NERDTreeIgnore = ['\.pyc$', '__pycache__']
+let g:NERDTreeWinSize=35
+map <leader>nn :NERDTreeToggle<cr>
+map <leader>nb :NERDTreeFromBookmark<Space>
+map <leader>nf :NERDTreeFind<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
