@@ -52,6 +52,9 @@ sudo install -Dm 644 other/freetype2.sh /etc/profile.d/
 sudo install -Dm 644 other/local.conf /etc/fonts/
 sudo install -Dm 644 other/dashbinsh.hook /usr/share/libalpm/hooks/
 sudo install -Dm 644 other/50-mouse-acceleration.conf /etc/X11/xorg.conf.d/
+sudo install -Dm 644 other/20-trackpoint.conf /etc/X11/xorg.conf.d/
+sudo install -Dm 644 other/30-touchpad.conf /etc/X11/xorg.conf.d/
+sudo install -Dm 644 other/local-overrides.quirks /etc/libinput/
 
 # Make some folders. Screenshots will go in the captures folder.
 mkdir -p ~/.config ~/.aurpkgs ~/Images/Captures ~/Images/Wallpapers \
