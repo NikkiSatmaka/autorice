@@ -47,6 +47,9 @@ sudo ln -sf /etc/fonts/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d/
 sudo ln -sf /etc/fonts/conf.avail/10-sub-pixel-rgb.conf /etc/fonts/conf.d/
 sudo ln -sf /etc/fonts/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d/
 
+# Make libinput folder for quirks
+sudo mkdir -p /etc/libinput/
+
 # Misc but important. The last disables mouse acceleration and can be removed.
 sudo install -Dm 644 other/freetype2.sh /etc/profile.d/
 sudo install -Dm 644 other/local.conf /etc/fonts/
