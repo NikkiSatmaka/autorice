@@ -20,6 +20,13 @@ XF86AudioLowerVolume
 XF86AudioMute
     pactl set-sink-mute @DEFAULT_SINK@ toggle
 
+# Brightness Control
+XF86MonBrightnessDown
+    brightnessctl set 10%-
+
+XF86MonBrightnessUp
+    brightnessctl set +10%
+
 # Terminal Emulator
 super + Return
     alacritty	
