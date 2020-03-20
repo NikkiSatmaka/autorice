@@ -127,7 +127,7 @@ command W w !sudo tee % > /dev/null
 " => VIM user interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
+set scrolloff=7
 
 " Avoid garbled characters in Chinese language windows OS
 let $LANG='en' 
@@ -159,7 +159,7 @@ set ruler
 set cmdheight=2
 
 " A buffer becomes hidden when it is abandoned
-set hid
+set hidden
 
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
@@ -186,7 +186,7 @@ set magic
 " Show matching brackets when text indicator is over them
 set showmatch 
 " How many tenths of a second to blink when matching brackets
-set mat=2
+set match=2
 
 " No annoying sound on errors
 set noerrorbells
@@ -275,11 +275,11 @@ set shiftwidth=4
 set tabstop=4
 
 " Linebreak on 500 characters
-set lbr
-set tw=500
+set linebreak
+set textwidth=500
 
-set ai "Auto indent
-set si "Smart indent
+set autoindent "Auto indent
+set smartindentjjjjjjj "Smart indent
 set wrap "Wrap lines
 
 """"""""""""""""""""""""""""""
