@@ -18,6 +18,7 @@
 "    -> General
 "    -> VIM user interface
 "    -> Colors and Fonts
+"    -> Syntastic
 "    -> Files and backups
 "    -> Text, tab and indent related
 "    -> Visual mode related
@@ -27,6 +28,7 @@
 "    -> vimgrep searching and cope displaying
 "    -> Spell checking
 "    -> Nerd Tree
+"    -> COC settings
 "    -> Misc
 "    -> Helper functions
 "
@@ -37,33 +39,48 @@
 " => VIM plug
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 call plug#begin('~/.config/nvim/plugged')
-" 
+ 
 " Themes
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
-"Plug 'tomasiser/vim-code-dark'
+
 " Center text
-"Plug 'junegunn/goyo.vim'
+Plug 'junegunn/goyo.vim'
+
 " Code Completion
-"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'ycm-core/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 " Fuzzy find files
-"Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+
 " This objectively makes vim better
 "Plug 'terryma/vim-multiple-cursors'
+
 " Working with tags
 "Plug 'alvan/vim-closetag'
-"Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
+
+" Git wrapper
+Plug 'tpope/vim-fugitive'
+
 " Commenting
-"Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
+
 " Syntax highlighting
+"Plug 'vim-syntastic/syntastic'
+"Plug 'dense-analysis/ale'
 "Plug 'yuezk/vim-js'
 "Plug 'maxmellon/vim-jsx-pretty'
 "Plug 'HerringtonDarkholme/yats.vim'
 "Plug 'vim-pandoc/vim-pandoc-syntax'
 "Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 "Plug 'unblevable/quick-scope'
-"Plug 'kovetskiy/sxhkd-vim'
+Plug 'kovetskiy/sxhkd-vim'
+
 " File management
 Plug 'preservim/nerdtree'
 "Plug 'PotatoesMaster/i3-vim-syntax'
@@ -186,8 +203,8 @@ endif
 set foldcolumn=0
 
 " Line numbers
-set relativenumber
 set number
+set relativenumber
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -201,11 +218,11 @@ if $COLORTERM == 'gnome-terminal'
 endif
 
 " Set airline theme
-let g:airline_theme = 'base16_tomorrow'
+let g:airline_theme = 'base16_gruvbox_dark_hard'
 
 try
     set termguicolors
-    colorscheme base16-tomorrow-night
+    colorscheme base16-gruvbox-dark-hard
 catch
 endtry
 
@@ -221,14 +238,27 @@ endif
 set encoding=utf8
 
 " Use Unix as the standard file type
-set ffs=unix,dos,mac
+set fileformats=unix,dos,mac
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Syntastic
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Recommmended settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
-set nowb
+set nowritebackup
 set noswapfile
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -265,7 +295,7 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 map <space> /
-map <c-space> ?
+map <C-space> ?
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
@@ -377,6 +407,26 @@ let g:NERDTreeWinSize=35
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark<Space>
 map <leader>nf :NERDTreeFind<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => COC settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" prettier command for coc
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+let g:coc_global_extensions = [
+  \ 'coc-snippets',
+  \ 'coc-pairs',
+  \ 'coc-tsserver',
+  \ 'coc-html',
+  \ 'coc-css',
+  \ 'coc-prettier',
+  \ 'coc-json',
+  \ 'coc-angular',
+  \ 'coc-texlab'
+  \ ]
+
+" From Coc Readme
+set updatetime=300
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
